@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mx-4">
+    <h1>{{ model_name }}</h1>
+    <a href="{{ url_for('crud.add', model_name=model_name) }}" class="btn btn-primary mb-3">Добавить</a>
+    <a href="{{ url_for('crud.upload', model_name=model_name) }}" class="btn btn-primary mb-3">Загрузить</a>
+    <table class="table table-striped">
+        <thead><tr></tr></thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                {% if model_name =='SiteFile' %}
+                    <td>
+                        {% if item.filename %}
+                        <img src="{{ url_for('static', filename='upload/' + item.filename) }}" width="400">
+                        {% endif %}
+                    </td>
+                {% elif model_name == 'PageSite' %}
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.name_route }}</td>
+                {% elif model_name == 'User' %}
+                    <td>{{ item.username }}</td>
+                    <td>{% if item.is_admin %}<b>Admin</b>{% endif %}</td>
+                    <td>{{ item.email }}</td>
+                {% endif %}
+                <td>
+                    {% if not (model_name =='SiteFile') %}
+                        <a href="{{ url_for('crud.edit', model_name=model_name, id=item.id) }}" class="btn btn-sm btn-primary mx-1">Изменить</a>
+                    {% endif %}
+                    <form method="post" action="{{ url_for('crud.delete', model_name=model_name, id=item.id) }}" style="display: inline">
+                        <button type="submit" class="btn btn-sm btn-danger mx-1">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

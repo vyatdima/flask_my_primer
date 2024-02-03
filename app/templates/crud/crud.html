@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mx-4">
+   <h1>{{ title }}</h1>
+    <a href="{{ url_for('crud.crud_list', model_name='User') }}">Пользователи</a><br>
+    <a href="{{ url_for('crud.crud_list', model_name='PageSite') }}">Страницы сайта</a><br>
+    <a href="{{ url_for('crud.crud_list', model_name='SiteFile') }}">Файлы сайта</a><br>
+</div>
+{% endblock %}

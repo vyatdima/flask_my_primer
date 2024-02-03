@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
+{% block content %}
+<div class="mx-4">
+    {{ moment(tektime).format('LLLL') }}
+    {% if current_user.username %}<h1>Добро пожаловать, {{ current_user.username }}!</h1>{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
+{% block content %}
+<div class="mx-4">
+    <p>Главная страница</p>
+    {{ moment(tektime).format('LLLL') }}
+</div>
+{% endblock %}
